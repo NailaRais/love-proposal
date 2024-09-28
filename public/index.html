@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -105,17 +106,25 @@
     <div class="container">
         <h1>I loveeeeeeeeee youuuu jaaaani! 💖</h1>
         <div class="heart"></div>
-        <!-- Added onclick directly in the button tag for better compatibility -->
-        <button onclick="showMessage()">Click me!</button>
+        <!-- Make sure the button triggers the JavaScript function -->
+        <button id="myButton">Click me!</button>
         <div id="message">Will you be mine forever? 💕</div>
     </div>
 
     <script>
-        function showMessage() {
+        // Wait for the document to load
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.getElementById('myButton');
             const message = document.getElementById('message');
-            message.classList.add('show-message'); // Show the message
-        }
+
+            // Add an event listener to the button
+            button.addEventListener('click', function() {
+                // When button is clicked, show the message
+                message.classList.add('show-message');
+            });
+        });
     </script>
 </body>
 </html>
+
 
