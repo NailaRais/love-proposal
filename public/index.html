@@ -12,8 +12,8 @@
             justify-content: center;
             align-items: center;
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(135deg, #ff9966, #ff5e62, #f54ea2, #ff7676);
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, #6a3093, #a044ff);
+            background-size: 200% 200%;
             animation: gradientShift 8s ease infinite;
         }
 
@@ -29,11 +29,10 @@
 
         h1 {
             font-size: 3rem;
-            color: #fff;
+            color: white;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
         }
 
-        /* Heart animation */
         .heart {
             width: 100px;
             height: 90px;
@@ -41,7 +40,7 @@
             margin: 20px auto;
             position: relative;
             transform: rotate(-45deg);
-            animation: bounce 2s infinite;
+            transition: background 0.5s ease; /* Smooth color transition */
         }
 
         .heart::before,
@@ -52,6 +51,7 @@
             background: #ff4b5c;
             border-radius: 50%;
             position: absolute;
+            transition: background 0.5s ease; /* Smooth color transition */
         }
 
         .heart::before {
@@ -64,12 +64,6 @@
             left: 50px;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(-45deg); }
-            50% { transform: translateY(-20px) rotate(-45deg); }
-        }
-
-        /* Button styles */
         button {
             padding: 15px 30px;
             font-size: 1.5rem;
@@ -80,28 +74,22 @@
             cursor: pointer;
             margin-top: 20px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth color transition */
         }
 
         button:hover {
             transform: scale(1.1);
-            background-color: #e76f51;
+            background-color: #f28f3b;
         }
 
-        /* Message styling */
         #message {
             margin-top: 20px;
             font-size: 2rem;
             color: white;
             display: none; /* Initially hidden */
-            opacity: 0;
-            transition: opacity 1s ease-in-out; /* Smooth transition */
+            transition: opacity 0.5s ease; /* Smooth fade-in effect */
         }
 
-        .show-message {
-            display: block;
-            opacity: 1; /* Fade-in effect */
-        }
     </style>
 </head>
 <body>
@@ -115,13 +103,31 @@
     <script>
         // Add a click event listener to the button
         document.getElementById("myButton").addEventListener("click", function() {
+            // Show the message when button is clicked
             const message = document.getElementById("message");
-            message.classList.add("show-message"); // Show the message with a fade-in effect
+            message.style.display = "block";
+            message.style.opacity = "1"; // Make message visible
+
+            // Change heart color
+            const heart = document.querySelector(".heart");
+            heart.style.background = getRandomColor();
+            heart.style.transition = "background 0.5s ease"; // Smooth color transition
+            heart::before.style.background = getRandomColor();
+            heart::after.style.background = getRandomColor();
         });
+
+        // Function to generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
     </script>
 </body>
 </html>
-
 
 
 
